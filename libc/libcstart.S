@@ -2,10 +2,10 @@
 .globl _start
 
 _start :
-        
+        # argc, argv
         call _main;
-        movl $1, %eax
-        xorl %ebx, %ebx
+        movq $1, %rax
+        xorq %rbx, %rbx
         int $0x80
         ret;
 
