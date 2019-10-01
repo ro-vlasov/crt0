@@ -1,9 +1,7 @@
 
 void _main(int argc, char* stack) {
-    int ret = main();
-    if (!ret) {
-        _write(2, "\n\nzero", 5);
-    }
-    _write(2, "nozero", 6);
+    char** argv = &stack;
+    char** envp = argv + argc + 1;
+    int ret = main(argc, argv, envp);
     _exit(ret);
 }
