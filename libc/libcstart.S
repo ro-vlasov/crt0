@@ -1,4 +1,4 @@
-; Entry point of c-prog
+# Entry point of c-prog
 .globl _start
 
 _start :        

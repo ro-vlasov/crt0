@@ -1,11 +1,13 @@
-ASMFILES = $(wildcard $(.)/%.S)
-OBJ = ./../../obj
+ASMFILES = libcstart.o
 OBJPATH = ./../../obj/$@
-OBJFILES = $(wildcard $(OBJ)/*.o)
 GCC = gcc
 
 
 %.o: %.c
 	$(GCC) -c $< -o $(OBJPATH)
+
+%.o: %.S
+	$(GCC) -c $< -o $(OBJPATH)
+
 
 run:   $(ASMFILES)
