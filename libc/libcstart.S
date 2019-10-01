@@ -1,8 +1,9 @@
 # Entry point of c-prog
 .globl _start
 
+extern _exit;
+
 _start :        
         call main;
-        movl $1, %eax;               
-        xorl %ebx, %ebx;
-        int $0x80;
+        ret;
+
