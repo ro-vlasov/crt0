@@ -2,7 +2,7 @@
     .global _exit
 
 _exit:
-    movl 4(%esp),   %ebx
-    movl $1,        %eax
+    movq 8(%rsp),   %rbx
+    movq $1,        %rax
     int $0x80
     ret
