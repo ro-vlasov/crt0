@@ -1,16 +1,21 @@
 ASMFILES = 	libcstart.o libcexit.o \
-			libcwrite.o
+			libcwrite.o crtinit.o
 CFILES = libcmain.o
 OBJPATH = ./../../obj/$@
 AS = as
 GCC = gcc
 
 %.o: %.c
-	$(GCC) -c -nostdlib $< -o $(OBJPATH)
+	$(GCC) -nostdlib -c $< -o $(OBJPATH)
 
 %.o: %.S
 	$(AS) $< -o $(OBJPATH)
 
 
-run:   	$(ASMFILES)
-		$(CFILES)
+_cc:	$(CFILES)
+
+_asm:	$(ASMFILES)
+
+run:
+		$(MAKE) _cc
+		$(MAKE) _asm

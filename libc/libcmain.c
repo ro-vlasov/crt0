@@ -1,7 +1,6 @@
 
-void _main(int argc, char* stack) {
-    char** argv = &stack;
-    char** envp = argv + argc + 1;
+extern int main(int, char**, char**);
+void _main(int argc, char** argv, char** envp) {
     int ret = main(argc, argv, envp);
-    _exit(ret);
+    _exit(0);
 }

@@ -2,20 +2,25 @@
 .globl _start
 
 _start :
-        # argc, argv
-        movq %rsp, %rbp
-        movq (%rbp), %rdi               # argc
-        leaq 8(%rbp), %rsi              # argv
-        leaq 8(%rsi, %rdi, 8), %rdx     # envp
-   #     push %rdx
-   #     push %rsi
-   #     push %rdi
+     # argc, argv
+     pushq %rbp
+     movq %rsp, %rbp
+     movq 0(%rbp), %rdi
+     leaq 8(%rbp), %rsi
 
-
-        # _main calls main
-        call _main;
-        movq $1, %rax
-        xorq %rbx, %rbx
-        int $0x80
-        ret;
+     # saving registers
+     # Program loader has put argc, argv, envp on the stack
+     # %rdi contains argc, %rsi contains argv and %rcx contains envp
+     pushq %rcx
+     pushq %rsi
+     pushq %rdi
+     
+     call _init
+     
+     // restore registers
+     popq %rdi
+     popq %rsi
+     popq %rcx
+     # _main calls main
+     call _main;
 
