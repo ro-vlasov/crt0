@@ -1,5 +1,6 @@
 ASMFILES = 	libcstart.o libcexit.o \
-			libcwrite.o crtinit.o
+			libcwrite.o crti.o  \
+			crtn.o
 CFILES = libcmain.o
 OBJPATH = ./../../obj/$@
 AS = as
